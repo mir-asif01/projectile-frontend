@@ -1,7 +1,11 @@
+import Banner from "../HomeComponents/Banner";
+import Features from "../HomeComponents/Features";
+
 function Home() {
     return (
         <>
-            <h1 className="text-[40px]">This is from Home</h1>
+            <Banner></Banner>
+            <Features></Features>
         </>
     );
 }
