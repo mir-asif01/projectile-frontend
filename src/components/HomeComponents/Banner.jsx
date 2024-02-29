@@ -3,7 +3,7 @@ import bannerImg from '../Images/banner.png'
 function Banner() {
     return (
         <>
-            <div className='mt-6 flex justify-between items-center w-[70%] m-auto'>
+            <div className='mt-6 mb-20 flex justify-between items-center w-[70%] m-auto'>
                 <div className='w-[50%]'>
                     <h1 className='text-[40px] mb-2'>Projectile</h1>
                     <p className='text-[20px] underline'>Perfect place for your projects.</p>

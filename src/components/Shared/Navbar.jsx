@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 function Navbar() {
     return (
         <>
-            <div className="flex justify-between items-center p-[20px] w-[100%] m-auto bg-gray-300 px-44">
+            <div className="flex justify-between items-center p-[20px] w-[100%] m-auto bg-slate-900 text-white px-44">
                 <div className="">
                     <p className="text-[30px] text-cyan-500 font-semibold">PROJECTILE</p>
                 </div>

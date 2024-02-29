@@ -26,7 +26,7 @@ function Features() {
                 {
                     features.map((feature) => {
                         return (
-                            <div className='flex flex-col justify-between items-center gap-2 hover:shadow-md border-2 p-7'>
+                            <div className='flex flex-col justify-between items-center gap-2 hover:shadow-md border-2 p-7 cursor-pointer'>
                                 <h1 className='text-xl font-semibold'>{feature.title}</h1>
                                 <p className='text-center'>{feature.desc}</p>
                             </div>
