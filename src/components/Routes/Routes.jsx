@@ -4,6 +4,7 @@ import Home from '../Home/Home'
 import Projects from '../Projects/Projects'
 import Login from '../AuthRoutes/Login'
 import Error from '../Error/Error'
+import SignUp from '../AuthRoutes/SignUp'
 
 const routes = createBrowserRouter([
     {
@@ -21,6 +22,11 @@ const routes = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/signup',
+                element: <SignUp></SignUp>
+
             },
             {
                 path: '*',

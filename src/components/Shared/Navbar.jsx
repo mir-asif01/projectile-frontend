@@ -10,7 +10,7 @@ function Navbar() {
                 <div>
                     <ul className="flex justify-between gap-7">
                         <li className="mx-2 text-[20px]"><NavLink to='/'>Home</NavLink></li>
-                        <li className="mx-2 text-[20px]"><NavLink to='/projects'>Project</NavLink></li>
+                        <li className="mx-2 text-[20px]"><NavLink to='/projects'>Projects</NavLink></li>
                         <li className="mx-2 text-[20px]"><NavLink to='/login'>Login</NavLink></li>
                     </ul>
                 </div>
