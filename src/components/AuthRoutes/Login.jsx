@@ -6,6 +6,26 @@ function Login() {
         const form = e.target
         const email = form.email.value
         const password = form.password.value
+        const loginInfo = {
+            email,
+            password
+        }
+        fetch('http://localhost:5000/login', {
+            method: "POST",
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify(loginInfo)
+        }).then(res => res.json())
+            .then(res => {
+                if (res.message) {
+                    alert(res.message)
+                }
+                else {
+                    console.log(res);
+                }
+                // form.reset()
+            })
 
         // console.log({ email, password });
         // form.reset()
