@@ -3,8 +3,8 @@ import createProject from '../Images/start-new-project.png'
 function Features() {
     const features = [
         {
-            title: 'Create Account',
-            desc: 'A new user can create a acount'
+            title: 'User Authentication',
+            desc: 'A new user can create and login to an acount'
         },
         {
             title: 'Start A new Project',

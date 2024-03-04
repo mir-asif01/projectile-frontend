@@ -24,7 +24,7 @@ function Login() {
                 else {
                     console.log(res);
                 }
-                // form.reset()
+                form.reset()
             })
 
         // console.log({ email, password });
