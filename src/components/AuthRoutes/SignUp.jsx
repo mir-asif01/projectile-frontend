@@ -7,20 +7,45 @@ function SignUp() {
         e.preventDefault()
         const form = e.target
         const email = form.email.value
+        const userName = form.name.value
         const password = form.password.value
         const profilePic = form.profilePic.files[0]
 
         const formData = new FormData()
         formData.append('image', profilePic)
+
         fetch(`https://api.imgbb.com/1/upload?key=00d3d611a0f9e9e12e2838db5be04835`, {
             method: "POST",
             body: formData
         }).then(res => res.json())
             .then(imgData => {
-                console.log(imgData.data.url);
-            })
+                if (imgData.data.url) {
+                    const profileImg = imgData.data.url
+                    const user = {
+                        email,
+                        userName,
+                        password,
+                        profileImg
+                    }
+                    // signup post api code here
 
-        console.log(profilePic);
+                    fetch('http://localhost:5000/signup', {
+                        method: "POST",
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
+                    }).then(res => res.json())
+                        .then(res => {
+                            alert(res.message)
+                            form.reset()
+                        })
+
+                    //signup code
+                } else {
+                    console.log('Error image not uploaded');
+                }
+            })
         form.reset()
     }
 
@@ -32,19 +57,19 @@ function SignUp() {
                     <div>
                         <label className="font-semibold" htmlFor="email">Email</label>
                         <br />
-                        <input className="w-full px-3 py-2 border-2 border-solid border-gray-300 rounded-lg" type="text" name="email" placeholder="Your Email" />
+                        <input required className="w-full px-3 py-2 border-2 border-solid border-gray-300 rounded-lg" type="text" name="email" placeholder="Your Email" />
                     </div>
                     <br />
                     <div>
                         <label className="font-semibold" htmlFor="name">Name</label>
                         <br />
-                        <input className="w-full px-3 py-2 border-2 border-solid border-gray-300 rounded-lg" type="text" name="name" placeholder="Your Name" />
+                        <input required className="w-full px-3 py-2 border-2 border-solid border-gray-300 rounded-lg" type="text" name="name" placeholder="Your Name" />
                     </div>
                     <br />
                     <div>
                         <label className="font-semibold" htmlFor="password">Password</label>
                         <br />
-                        <input className="w-full px-3 py-2 border-2 border-solid border-gray-300 rounded-lg" type="password" name="password" placeholder="Password" />
+                        <input required className="w-full px-3 py-2 border-2 border-solid border-gray-300 rounded-lg" type="password" name="password" placeholder="Password" />
                     </div>
                     <br />
                     <div>
