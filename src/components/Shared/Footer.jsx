@@ -7,7 +7,7 @@ function Footer() {
                     <div className="flex justify-center items-center">
                         <div>
                             <p className="text-[30px] text-cyan-500 font-semibold">PROJECTILE</p>
-                            <p>We serve people, ensuring best possible outcome</p>
+                            <p>We serve people, ensuring best possible outcomes</p>
                         </div>
                     </div>
                     <div className="px-10">

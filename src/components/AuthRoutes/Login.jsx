@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 function Login() {
 
+    const navigate = useNavigate()
     const handleLogin = (e) => {
         e.preventDefault()
         const form = e.target
@@ -23,6 +24,9 @@ function Login() {
                 }
                 else {
                     console.log(res);
+                    localStorage.setItem('user', JSON.stringify(res))
+                    navigate('/')
+                    window.location.reload()
                 }
                 form.reset()
             })

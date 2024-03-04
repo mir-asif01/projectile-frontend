@@ -1,6 +1,14 @@
 import { NavLink } from "react-router-dom";
 
+
+
 function Navbar() {
+    const user = localStorage.getItem("user")
+    console.log(user);
+    const handleLogout = () => {
+        localStorage.removeItem("user")
+        window.location.reload()
+    }
     return (
         <>
             <div className="flex justify-between items-center p-[20px] w-[100%] m-auto bg-slate-900 text-white px-44">
@@ -11,7 +19,13 @@ function Navbar() {
                     <ul className="flex justify-between gap-7">
                         <li className="mx-2 text-[20px]"><NavLink to='/'>Home</NavLink></li>
                         <li className="mx-2 text-[20px]"><NavLink to='/projects'>Projects</NavLink></li>
-                        <li className="mx-2 text-[20px]"><NavLink to='/login'>Login</NavLink></li>
+                        {
+                            user ? <>
+                                <li className="mx-2 text-[20px]"><button onClick={handleLogout}>Log Out</button></li>
+                            </>
+                                :
+                                <li className="mx-2 text-[20px]"><NavLink to='/login'>Login</NavLink></li>
+                        }
                     </ul>
                 </div>
             </div>
