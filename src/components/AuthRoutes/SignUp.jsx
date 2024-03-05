@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 function SignUp() {
-
+    const navigate = useNavigate()
     const handleSignup = (e) => {
         e.preventDefault()
         const form = e.target
@@ -38,6 +38,7 @@ function SignUp() {
                     }).then(res => res.json())
                         .then(res => {
                             alert(res.message)
+                            navigate('/login')
                             form.reset()
                         })
 
@@ -54,6 +55,7 @@ function SignUp() {
             <div className="my-20 flex justify-center items-center">
                 <form onSubmit={handleSignup} className="border-solid border-2 p-20 border-gray-300 rounded-lg">
                     <h1 className="text-center text-4xl mb-4">Sign Up</h1>
+                    <p className="my-5 text-center">Already have an account? <Link className="underline text-cyan-600 font-bold" to='/login'>Login</Link> here</p>
                     <div>
                         <label className="font-semibold" htmlFor="email">Email</label>
                         <br />

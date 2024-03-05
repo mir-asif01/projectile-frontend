@@ -40,6 +40,7 @@ function Login() {
             <div className="my-20 flex justify-center items-center">
                 <form onSubmit={handleLogin} className="border-solid border-2 p-20 border-gray-300 rounded-lg">
                     <h1 className="text-center text-4xl mb-4">Login</h1>
+                    <p className="my-5">Test Email : <span className="text-red-600 font-semibold">demo@gmail.com</span>, password : <span className="text-red-600 font-semibold"> demo</span></p>
                     <div>
                         <label className="font-semibold" htmlFor="email">Email</label>
                         <br />
