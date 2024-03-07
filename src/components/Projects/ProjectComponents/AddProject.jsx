@@ -30,6 +30,14 @@ function AddProject() {
             forum
         }
 
+        fetch('http://localhost:5000/projects', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(projectModel)
+        })
+
         console.log(projectModel);
 
         form.reset()
