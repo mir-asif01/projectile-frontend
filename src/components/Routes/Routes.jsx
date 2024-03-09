@@ -7,6 +7,7 @@ import Error from '../Error/Error'
 import SignUp from '../AuthRoutes/SignUp'
 import AddProject from '../Projects/ProjectComponents/AddProject'
 import ProjectsLayout from '../Layouts/ProjectsLayout'
+import ProjectDetails from '../Projects/ProjectComponents/ProjectDetails'
 
 const routes = createBrowserRouter([
     {
@@ -35,6 +36,7 @@ const routes = createBrowserRouter([
     {
         path: '/projects',
         element: <ProjectsLayout></ProjectsLayout>,
+        // loader : ,
         children: [
             {
                 path: '/projects',
@@ -45,7 +47,9 @@ const routes = createBrowserRouter([
                 element: <AddProject></AddProject>
             },
             {
-
+                path: '/projects/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/projects/${params.id}`),
+                element: <ProjectDetails></ProjectDetails>
             }
         ]
     },

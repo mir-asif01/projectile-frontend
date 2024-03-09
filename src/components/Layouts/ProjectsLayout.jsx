@@ -9,7 +9,7 @@ function ProjectsLayout() {
                 <div className="w-full">
                     <Navbar></Navbar>
                 </div>
-                <div className="flex justify-between items-center w-[100%]">
+                <div className="flex justify-between w-[100%]">
                     <div className="w-[20%]">
 
                         <Sidenav></Sidenav>
