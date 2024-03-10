@@ -8,6 +8,7 @@ function AddProject() {
 
     const [createdDate, setCreatedDate] = useState()
     const [deadlineDate, setDeadlineDate] = useState()
+    const [teamMembers, setTeamMembers] = useState([])
 
     const createProjecHandler = (e) => {
         e.preventDefault()
@@ -17,7 +18,7 @@ function AddProject() {
         const creator = form.creator.value
         const isCompleted = false
         const teamMembers = ["asif", "tutul"]
-        const forum = ["comment1", "comment2"]
+        // const forum = ["comment1", "comment2"]
 
         const projectModel = {
             title,
@@ -26,8 +27,6 @@ function AddProject() {
             createdDate,
             deadlineDate,
             isCompleted,
-            teamMembers,
-            forum
         }
 
         fetch('http://localhost:5000/projects', {

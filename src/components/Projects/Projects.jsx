@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import Sidenav from "./ProjectComponents/Sidenav";
 import { useEffect, useState } from "react";
 
 function Projects() {
@@ -8,8 +7,6 @@ function Projects() {
 
     const userString = localStorage.getItem("user")
     const user = JSON.parse(userString)
-
-    // const userEmail = user.email ? user.email : ""
 
     useEffect(() => {
         fetch(`http://localhost:5000/projects?email=${user?.email}`)
@@ -24,24 +21,21 @@ function Projects() {
                 <div className=" p-10">
                     <div className="grid grid-cols-2 gap-20">
                         {
-                            projects.map((project) => {
-                                if (projects.length === 0) {
-                                    return <p>No projects found</p>
-                                }
-                                else {
-                                    return (
-                                        <div key={project._id} className="space-y-2">
-                                            <h1 className="text-2xl">{project.title}</h1>
-                                            <p className="text-cyan-600 font-semibold">{project.creator}</p>
-                                            <p className="text-justify">{project.description}</p>
-                                            <p className="text-cyan-600 font-semibold">{project.deadlineDate
-                                            }</p>
-                                            <button className="bg-cyan-400 px-5 py-2 rounded-sm font-semibold mt-4 text-gray-700"><NavLink to={`/projects/${project._id}`}>Details</NavLink></button>
-                                        </div>
-                                    )
-                                }
+                            projects.length > 0 ? projects.map(project => {
+                                return (
+                                    <div key={project._id} className="space-y-2">
+                                        <h1 className="text-2xl">{project.title}</h1>
+                                        <p className="text-cyan-600 font-semibold">{project.creator}</p>
+                                        <p className="text-justify">{project.description}</p>
+                                        <p className="text-cyan-600 font-semibold">{project.deadlineDate
+                                        }</p>
+                                        <button className="bg-cyan-400 px-5 py-2 rounded-sm font-semibold mt-4 text-gray-700"><NavLink to={`/projects/${project._id}`}>Details</NavLink></button>
+                                    </div>
+                                )
+                            }) : <>
+                                <p className="text-red-600 text-3xl text-center">No projects were found <br /><NavLink to="/projects/add" className="underline text-cyan-700">Add Here</NavLink></p>
+                            </>
 
-                            })
                         }
                     </div>
                 </div>

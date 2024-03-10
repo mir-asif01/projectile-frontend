@@ -3,9 +3,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 
 function Navbar() {
-    const user = localStorage.getItem("user")
     const navigate = useNavigate()
-    console.log(user);
+    const user = localStorage.getItem("user")
+    const userObj = JSON.parse(user)
+
+
+
     const handleLogout = () => {
         localStorage.removeItem("user")
         navigate('/')
@@ -24,6 +27,7 @@ function Navbar() {
                             user ? <>
                                 <li className="mx-2 text-[20px]"><NavLink to='/projects'>Projects</NavLink></li>
                                 <li className="mx-2 text-[20px]"><button onClick={handleLogout}>Log Out</button></li>
+                                <li><img className="h-10 w-10 rounded-full" src={userObj?.profileImg} alt="" /></li>
                             </>
                                 : <>
                                     <li className="mx-2 text-[20px]"><NavLink to='/login'>Login</NavLink></li>

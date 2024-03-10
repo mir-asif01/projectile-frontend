@@ -8,6 +8,7 @@ import SignUp from '../AuthRoutes/SignUp'
 import AddProject from '../Projects/ProjectComponents/AddProject'
 import ProjectsLayout from '../Layouts/ProjectsLayout'
 import ProjectDetails from '../Projects/ProjectComponents/ProjectDetails'
+import PrivateRoute from './PrivateRoute'
 
 const routes = createBrowserRouter([
     {
@@ -35,7 +36,7 @@ const routes = createBrowserRouter([
     },
     {
         path: '/projects',
-        element: <ProjectsLayout></ProjectsLayout>,
+        element: <PrivateRoute>{<ProjectsLayout></ProjectsLayout>}</PrivateRoute>,
         // loader : ,
         children: [
             {
