@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import AddTeamMembers from "../../Shared/AddTeamMember";
 
 function AddProject() {
 
@@ -9,7 +10,15 @@ function AddProject() {
     const [createdDate, setCreatedDate] = useState()
     const [deadlineDate, setDeadlineDate] = useState()
     const [teamMembers, setTeamMembers] = useState([])
-
+    console.log(teamMembers);
+    const [users, setUsers] = useState([])
+    // 
+    useEffect(() => {
+        fetch('http://localhost:5000/users')
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
+    console.log(users);
     const createProjecHandler = (e) => {
         e.preventDefault()
         const form = e.target
@@ -17,7 +26,6 @@ function AddProject() {
         const description = form.description.value
         const creator = form.creator.value
         const isCompleted = false
-        const teamMembers = ["asif", "tutul"]
         // const forum = ["comment1", "comment2"]
 
         const projectModel = {
@@ -27,8 +35,8 @@ function AddProject() {
             createdDate,
             deadlineDate,
             isCompleted,
+            teamMembers
         }
-
         fetch('http://localhost:5000/projects', {
             method: "POST",
             headers: {
@@ -36,9 +44,6 @@ function AddProject() {
             },
             body: JSON.stringify(projectModel)
         })
-
-        console.log(projectModel);
-
         form.reset()
     }
 
@@ -64,6 +69,16 @@ function AddProject() {
                             <label className="font-semibold" htmlFor="creator">Creator</label>
                             <br />
                             <input required defaultValue={user?.email ? user?.email : ""} className=" px-3 py-2 border-2 border-solid border-gray-300 rounded-lg" type="text" name="creator" placeholder="Your Email" />
+                        </div>
+                        <br />
+                        <div>
+                            <label className="font-semibold" htmlFor="teamMembers">Add Team members</label>
+                            <br />
+                            <h1>Added Teammembers</h1>
+                            <ul className="border-2 border-soldi border-gray-200 p-2">
+                                {teamMembers.map(t => <li>{t}</li>)}
+                            </ul>
+                            <AddTeamMembers user={user} users={users} teamMembers={teamMembers} setTeamMembers={setTeamMembers} ></AddTeamMembers>
                         </div>
                         <br />
                     </div>

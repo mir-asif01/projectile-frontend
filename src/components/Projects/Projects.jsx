@@ -13,8 +13,6 @@ function Projects() {
             .then(res => res.json())
             .then(data => setProjects(data))
     }, [user?.email])
-    console.log(user?.email);
-    console.log(projects);
     return (
         <>
             <div className="w-[100%] max-h-screen flex justify-center items-center">
