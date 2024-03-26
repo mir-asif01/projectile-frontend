@@ -68,7 +68,7 @@ function AddProject() {
                         <div>
                             <label className="font-semibold" htmlFor="creator">Creator</label>
                             <br />
-                            <input required defaultValue={user?.email ? user?.email : ""} className=" px-3 py-2 border-2 border-solid border-gray-300 rounded-lg" type="text" name="creator" placeholder="Your Email" />
+                            <input required readOnly defaultValue={user?.email ? user?.email : ""} className=" px-3 py-2 border-2 border-solid border-gray-300 rounded-lg" type="text" name="creator" placeholder="Your Email" />
                         </div>
                         <br />
                         <div>

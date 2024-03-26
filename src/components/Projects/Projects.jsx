@@ -17,7 +17,7 @@ function Projects() {
         <>
             <div className="w-[100%] max-h-screen flex justify-center items-center">
                 <div className=" p-2">
-                    <div className="grid grid-cols-4 gap-2 ">
+                    <div className="grid grid-cols-2 gap-10 ">
                         {
                             projects.length > 0 ? projects.map(project => {
                                 return (

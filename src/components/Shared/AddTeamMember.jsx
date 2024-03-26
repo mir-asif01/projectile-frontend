@@ -4,14 +4,18 @@ function AddTeamMembers({ user, users, teamMembers, setTeamMembers }) {
         <ul>
             {
                 users.map(user => {
-                    return (<div className="flex flex-col gap-2 snap-y">
+                    return (<div key={user?.email} className="flex flex-col gap-2 snap-y">
                         <button onClick={(e) => {
-                            if (loggedInUser == e.target.value) {
-                                alert('Creator can not be added as a team members')
+                            let member = e.target.value
+                            if (member === loggedInUser) {
+                                alert('You are already added as creator')
                                 return
                             }
+                            if ((teamMembers.find((t) => t === member))) {
+                                alert('member is alredy added')
+                            }
                             else {
-                                setTeamMembers([e.target.value, ...teamMembers])
+                                setTeamMembers([member, ...teamMembers])
                             }
                         }}
                             value={user?.email}>{user?.email}</button>
