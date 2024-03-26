@@ -23,7 +23,7 @@ function FeedbackForm() {
         })
             .then(res => res.json())
             .then(res => {
-                alert('feedback added')
+                alert('please refresh the page to see your feedback')
                 form.reset()
             })
 
