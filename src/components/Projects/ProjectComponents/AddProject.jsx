@@ -10,7 +10,6 @@ function AddProject() {
     const [createdDate, setCreatedDate] = useState()
     const [deadlineDate, setDeadlineDate] = useState()
     const [teamMembers, setTeamMembers] = useState([])
-    console.log(teamMembers);
     const [users, setUsers] = useState([])
     // 
     useEffect(() => {
@@ -18,7 +17,6 @@ function AddProject() {
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
-    console.log(users);
     const createProjecHandler = (e) => {
         e.preventDefault()
         const form = e.target

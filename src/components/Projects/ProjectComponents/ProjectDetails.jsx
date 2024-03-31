@@ -2,7 +2,36 @@ import { useLoaderData } from "react-router-dom";
 
 function ProjectDetails() {
     const project = useLoaderData()
-    const { creator, createdDate, deadlineDate, description, isCompleted, title, teamMembers } = project
+    const { _id, creator, createdDate, deadlineDate, description, isCompleted, title, teamMembers } = project
+
+    const addTaskhandler = () => {
+        const taskText = document.getElementById('taskId').value
+        const task = {
+            projectId: _id,
+            taskText,
+            isCompleted: false,
+        }
+        fetch('http://localhost:5000/addTask', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(task)
+        })
+            .then(res => res.json())
+            .then((res) => {
+                if (res) {
+                    alert("task added")
+                }
+                else {
+                    alert('error happend')
+                }
+            })
+        console.log(task);
+    }
+    const addCommenthadler = () => {
+
+    }
     return (
         <div className="h-full w-full flex justify-center p-5 items-center gap-4">
             <div className="w-[350px] shadow  px-5 py-4  border-cyan-200 border-solid rounded-lg space-y-3">
@@ -18,8 +47,8 @@ function ProjectDetails() {
                 </div>
                 <div className="">
                     <div className="p-1 flex justify-center items-center">
-                        <input type="text" placeholder="Task" className="outline-none border border-solid border-cyan-500 px-2 py-1 rounded-l-lg" />
-                        <button className="bg-cyan-500 text-white text-xl px-2 py-1 rounded-r-lg">Add Task</button>
+                        <input type="text" id="taskId" placeholder="Task" className="outline-none border border-solid border-cyan-500 px-2 py-1 rounded-l-lg" />
+                        <button onClick={addTaskhandler} className="bg-cyan-500 text-white text-xl px-2 py-1 rounded-r-lg">Add Task</button>
                     </div>
                     <div className="mt-2">
                         <ul>
