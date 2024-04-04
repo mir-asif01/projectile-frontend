@@ -1,16 +1,25 @@
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 function ProjectDetails() {
     const project = useLoaderData()
     const { _id, creator, createdDate, deadlineDate, description, isCompleted, title, teamMembers } = project
+    const [tasks, setTasks] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/tasks?projectId=${_id}`)
+            .then(res => res.json())
+            .then(res => setTasks(res))
+    }, [tasks])
 
     const addTaskhandler = () => {
-        const taskText = document.getElementById('taskId').value
+        let taskText = document.getElementById('taskId').value
         const task = {
             projectId: _id,
             taskText,
             isCompleted: false,
         }
+
         fetch('http://localhost:5000/addTask', {
             method: "POST",
             headers: {
@@ -27,7 +36,7 @@ function ProjectDetails() {
                     alert('error happend')
                 }
             })
-        console.log(task);
+        setTasks([task, ...tasks])
     }
     const addCommenthadler = () => {
 
@@ -52,8 +61,13 @@ function ProjectDetails() {
                     </div>
                     <div className="mt-2">
                         <ul>
-                            <li>Task 1 </li>
-                            <li>Task 2</li>
+                            {
+                                tasks.map((task) => {
+                                    return (
+                                        <li key={task?._id}>{task.taskText}</li>
+                                    )
+                                })
+                            }
                         </ul>
                     </div>
                 </div>
