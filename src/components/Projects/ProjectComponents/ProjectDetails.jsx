@@ -5,6 +5,10 @@ function ProjectDetails() {
     const project = useLoaderData()
     const { _id, creator, createdDate, deadlineDate, description, isCompleted, title, teamMembers } = project
     const [tasks, setTasks] = useState([])
+    const [comments, setComments] = useState([])
+
+    const userString = localStorage.getItem("user")
+    const user = JSON.parse(userString)
 
     useEffect(() => {
         fetch(`http://localhost:5000/tasks?projectId=${_id}`)
@@ -29,16 +33,25 @@ function ProjectDetails() {
         })
             .then(res => res.json())
             .then((res) => {
-                if (res) {
-                    alert("task added")
-                }
-                else {
-                    alert('error happend')
-                }
             })
         setTasks([task, ...tasks])
     }
     const addCommenthadler = () => {
+        const commentText = document.getElementById("comment").value
+        const comment = {
+            projectId: _id,
+            commentText,
+            userEmail: user?.email
+        }
+
+        fetch("http://localhost:5000/addComment", {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(comment)
+        }).then(res => { res.json() })
+            .then(res => { })
 
     }
     return (
@@ -73,11 +86,20 @@ function ProjectDetails() {
                 </div>
             </div>
             {/* forum */}
-            <div className="p-5 b">
-                <p>all the comments about the projects will be shown here</p>
+            <div className="p-5">
+                <h1 className="text-3xl font-semibold text-center my-2">Comments</h1>
                 <div className="p-1 flex justify-center items-center">
-                    <input type="text" placeholder="your comment" className="outline-none border border-solid border-cyan-500 px-2 py-1 rounded-l-lg" />
-                    <button className="bg-cyan-500 hover:shadow-md shadow-cyan-500 text-white text-xl px-2 py-1 rounded-r-lg">Comment</button>
+                    <input id="comment" type="text" placeholder="your comment" className="outline-none border border-solid border-cyan-500 px-2 py-1 rounded-l-lg" />
+                    <button onClick={addCommenthadler} className="bg-cyan-500 hover:shadow-md shadow-cyan-500 text-white text-xl px-2 py-1 rounded-r-lg">Comment</button>
+                </div>
+                {/* comments*/}
+                <div>
+                    {comments.map((c) => {
+                        return (<div key={c._id}>
+                            <h1 className="bg-slate-100 rounded-lg px-4 py-2 my-2 text-center">{c.commentText}
+                                <span className="cursor-pointer mx-3 text-slate-100 bg-cyan-600 rounded-[50%] px-2 py-1 text-[10px]">{c.userEmail.slice(0, 1)}</span></h1>
+                        </div>)
+                    })}
                 </div>
             </div>
         </div>
