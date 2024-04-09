@@ -80,7 +80,7 @@ function ProjectDetails() {
                 <div className="">
                     <div className="p-1 flex justify-center items-center">
                         <input type="text" id="taskId" placeholder="Task" className="outline-none border border-solid border-cyan-500 px-2 py-1 rounded-l-lg" />
-                        <button onClick={addTaskhandler} className="bg-cyan-500 text-white text-xl px-2 py-1 rounded-r-lg">Add Task</button>
+                        <button onClick={addTaskhandler} disabled={user?.email === creator ? false : true} className="bg-cyan-500 text-white text-xl px-2 py-1 rounded-r-lg">Add Task</button>
                     </div>
                     <div className="mt-2">
                         <ul>
