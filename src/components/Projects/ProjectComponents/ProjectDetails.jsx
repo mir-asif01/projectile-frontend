@@ -10,11 +10,21 @@ function ProjectDetails() {
     const userString = localStorage.getItem("user")
     const user = JSON.parse(userString)
 
+    // fetching all tasks from backend api
     useEffect(() => {
         fetch(`http://localhost:5000/tasks?projectId=${_id}`)
             .then(res => res.json())
             .then(res => setTasks(res))
     }, [tasks])
+
+    //fetching all comments from backend api
+    useEffect(() => {
+        fetch(`http://localhost:5000/comments?projectId=${_id}`)
+            .then(res => res.json())
+            .then(res => {
+                setComments(res)
+            })
+    }, [comments])
 
     const addTaskhandler = () => {
         let taskText = document.getElementById('taskId').value
@@ -24,6 +34,7 @@ function ProjectDetails() {
             isCompleted: false,
         }
 
+        setTasks([task, ...tasks])
         fetch('http://localhost:5000/addTask', {
             method: "POST",
             headers: {
@@ -34,7 +45,6 @@ function ProjectDetails() {
             .then(res => res.json())
             .then((res) => {
             })
-        setTasks([task, ...tasks])
     }
     const addCommenthadler = () => {
         const commentText = document.getElementById("comment").value
@@ -43,7 +53,7 @@ function ProjectDetails() {
             commentText,
             userEmail: user?.email
         }
-
+        setComments([comment, ...comments])
         fetch("http://localhost:5000/addComment", {
             method: "POST",
             headers: {
@@ -96,8 +106,8 @@ function ProjectDetails() {
                 <div>
                     {comments.map((c) => {
                         return (<div key={c._id}>
-                            <h1 className="bg-slate-100 rounded-lg px-4 py-2 my-2 text-center">{c.commentText}
-                                <span className="cursor-pointer mx-3 text-slate-100 bg-cyan-600 rounded-[50%] px-2 py-1 text-[10px]">{c.userEmail.slice(0, 1)}</span></h1>
+                            <p className="bg-slate-100 rounded-lg px-4 py-2 my-2 text-center">{c.commentText}
+                                <span className="cursor-pointer mx-3 text-slate-100 bg-cyan-600 rounded-[50%] px-2 py-1 text-[10px]">{c.userEmail.slice(0, 1)}</span></p>
                         </div>)
                     })}
                 </div>
