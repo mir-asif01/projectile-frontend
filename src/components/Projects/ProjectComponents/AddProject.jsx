@@ -13,7 +13,7 @@ function AddProject() {
     const [users, setUsers] = useState([])
     // 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://projectile-server.vercel.app/users')
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
@@ -35,7 +35,7 @@ function AddProject() {
             isCompleted,
             teamMembers
         }
-        fetch('http://localhost:5000/projects', {
+        fetch('https://projectile-server.vercel.app/projects', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

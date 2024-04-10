@@ -11,14 +11,14 @@ function Projects() {
 
     // fetch projects created by logged in user
     useEffect(() => {
-        fetch(`http://localhost:5000/projects?email=${user?.email}`)
+        fetch(`https://projectile-server.vercel.app/projects?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setProjects(data))
     }, [user?.email])
 
     // fetch projects where user is a member
     useEffect(() => {
-        fetch(`http://localhost:5000/memberOfProjects?email=${user?.email}`)
+        fetch(`https://projectile-server.vercel.app/memberOfProjects?email=${user?.email}`)
             .then(res => res.json())
             .then(res => setMemberProjects(res))
     }, [])

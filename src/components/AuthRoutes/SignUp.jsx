@@ -29,7 +29,7 @@ function SignUp() {
                     }
                     // signup post api code here
 
-                    fetch('http://localhost:5000/signup', {
+                    fetch('https://projectile-server.vercel.app/signup', {
                         method: "POST",
                         headers: {
                             'content-type': 'application/json'

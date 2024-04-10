@@ -14,7 +14,7 @@ function FeedbackForm() {
             name,
             feedbackText
         }
-        fetch('http://localhost:5000/feedback', {
+        fetch('https://projectile-server.vercel.app/feedback', {
             method: "POST",
             headers: {
                 'content-type': "application/json"

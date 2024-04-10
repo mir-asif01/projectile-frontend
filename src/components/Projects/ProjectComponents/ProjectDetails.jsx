@@ -12,14 +12,14 @@ function ProjectDetails() {
 
     // fetching all tasks from backend api
     useEffect(() => {
-        fetch(`http://localhost:5000/tasks?projectId=${_id}`)
+        fetch(`https://projectile-server.vercel.app/tasks?projectId=${_id}`)
             .then(res => res.json())
             .then(res => setTasks(res))
     }, [tasks])
 
     //fetching all comments from backend api
     useEffect(() => {
-        fetch(`http://localhost:5000/comments?projectId=${_id}`)
+        fetch(`https://projectile-server.vercel.app/comments?projectId=${_id}`)
             .then(res => res.json())
             .then(res => {
                 setComments(res)
@@ -35,7 +35,7 @@ function ProjectDetails() {
         }
 
         setTasks([task, ...tasks])
-        fetch('http://localhost:5000/addTask', {
+        fetch('https://projectile-server.vercel.app/addTask', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -54,7 +54,7 @@ function ProjectDetails() {
             userEmail: user?.email
         }
         setComments([comment, ...comments])
-        fetch("http://localhost:5000/addComment", {
+        fetch("https://projectile-server.vercel.app/addComment", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

@@ -49,7 +49,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/projects/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/projects/${params.id}`),
+                loader: ({ params }) => fetch(`https://projectile-server.vercel.app/projects/${params.id}`),
                 element: <ProjectDetails></ProjectDetails>
             }
         ]

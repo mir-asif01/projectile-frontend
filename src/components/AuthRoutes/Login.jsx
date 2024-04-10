@@ -11,7 +11,7 @@ function Login() {
             email,
             password
         }
-        fetch('http://localhost:5000/login', {
+        fetch('https://projectile-server.vercel.app/login', {
             method: "POST",
             headers: {
                 'content-type': "application/json"

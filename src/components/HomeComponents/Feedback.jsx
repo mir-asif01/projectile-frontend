@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 function Feedback() {
     const [feedbacks, setFeedbacks] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/feedbacks')
+        fetch('https://projectile-server.vercel.app/feedbacks')
             .then(res => res.json())
             .then(data => setFeedbacks(data))
     }, [
