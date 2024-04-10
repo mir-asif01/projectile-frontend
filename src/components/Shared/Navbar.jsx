@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 
@@ -7,6 +8,7 @@ function Navbar() {
     const user = localStorage.getItem("user")
     const userObj = JSON.parse(user)
 
+    const [responsiveMenu, setResponsiveMenu] = useState(false)
 
 
     const handleLogout = () => {
@@ -14,6 +16,11 @@ function Navbar() {
         navigate('/')
         window.location.reload()
     }
+
+    const toggleResponsiveNav = () => {
+
+    }
+
     return (
         <>
             <div className="flex justify-between items-center p-[20px] w-[100%] m-auto mb-10 bg-slate-900 text-white px-44">
